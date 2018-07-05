@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="8956e268-149e-4159-b102-3f348e4d75b5" type="jetbrains.git" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Terraform (Pull Requests)</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ALWAYS" />
+  <param name="authMethod" value="TEAMCITY_SSH_KEY" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="teamcity:branchSpec" value="+:*" />
+  <param name="teamcitySshKey" value="Github - ve_build_servers" />
+  <param name="url" value="git@github.com:ve-interactive/terraform-infrastructure.git" />
+  <param name="useAlternates" value="true" />
+  <param name="usernameStyle" value="FULL" />
+</vcs-root>
+

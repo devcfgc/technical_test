@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="CoreInfrastructure_Terraform" uuid="3ea8af2b-cbcb-4200-a0ff-0b2587220da0" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Pull Requests</name>
+  <parameters />
+  <cleanup />
+</project>
+

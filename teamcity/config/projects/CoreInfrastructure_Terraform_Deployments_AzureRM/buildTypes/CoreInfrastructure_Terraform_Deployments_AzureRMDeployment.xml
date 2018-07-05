@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="219e7358-3be9-49b9-b4c6-a3696432ec4b" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>AzureRM Deployment</name>
+  <settings>
+    <options>
+      <option name="cleanBuild" value="true" />
+      <option name="shouldFailBuildOnAnyErrorMessage" value="true" />
+    </options>
+    <parameters>
+      <param name="TERRAFORM_MODULES_PATH" value="src/azurerm/infrastructure" />
+      <param name="env.ARM_CLIENT_ID" value="" spec="text display='hidden' validationMode='not_empty'" />
+      <param name="env.ARM_CLIENT_SECRET" value="zxx775d03cbe80d301b" spec="password display='hidden'" />
+      <param name="env.ARM_SUBSCRIPTION_ID" value="" spec="text display='hidden' validationMode='not_empty'" />
+      <param name="env.ARM_TENANT_ID" value="" spec="text display='hidden' validationMode='not_empty'" />
+      <param name="env.TF_VAR_admin_password" value="zxx775d03cbe80d301b" spec="password display='hidden'" />
+      <param name="env.TF_VAR_admin_username" value="" spec="text display='hidden' validationMode='not_empty'" />
+      <param name="env.TF_VAR_directory_password" value="zxx775d03cbe80d301b" spec="password display='hidden'" />
+      <param name="env.TF_VAR_directory_username" value="" spec="text display='hidden' validationMode='not_empty'" />
+    </parameters>
+    <build-runners>
+      <runner id="RUNNER_486" name="" type="CoreInfrastructure_Terraform_Deployments_TerraformDeployment">
+        <parameters>
+          <param name="COMMIT_SHA" value="%system.build.vcs.number.CoreInfrastructure_Terraform_Deployments_Terraform%" />
+          <param name="COMPANY" value="%COMPANY%" />
+          <param name="ENVIRONMENT" value="%ENVIRONMENT%" />
+          <param name="ENVIRONMENT_FILE" value="%system.teamcity.build.checkoutDir%/src/azurerm/configuration/%COMPANY%-%ENVIRONMENT%.tfvars" />
+          <param name="GITHUB_TOKEN" value="%GITHUB_TOKEN%" />
+          <param name="NODE_VERSION" value="%NODE_VERSION%" />
+          <param name="TERRAFORM_MODULES_PATH" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="CoreInfrastructure_Terraform_Deployments_Terraform" />
+      <vcs-entry-ref root-id="CoreInfrastructure_Terraform_Deployments_TerraformPlanner">
+        <checkout-rule rule="+:. =&gt; build/" />
+      </vcs-entry-ref>
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <build-extensions>
+      <extension id="BUILD_EXT_40" type="JetBrains.SharedResources">
+        <parameters>
+          <param name="locks-param" value="TerraformEnvironmentLock writeLock" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <cleanup />
+  </settings>
+</template>
+

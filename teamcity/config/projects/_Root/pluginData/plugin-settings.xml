@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <tools>
+    <default-versions>
+      <tool-version tool-type="jetbrains.resharper-clt" id="jetbrains.resharper-clt.2016.2.20160913.100041" />
+      <tool-version tool-type="NuGet.CommandLine" id="NuGet.CommandLine.3.4.3" />
+    </default-versions>
+  </tools>
+</settings>
+

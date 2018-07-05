@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="6ff10ba9-f647-403b-99b1-8abc49b238a8" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Plan Ve CI</name>
+  <description />
+  <settings ref="CoreInfrastructure_Terraform_PullRequests_AzureRMPullRequest">
+    <parameters>
+      <param name="COMPANY" value="ve" />
+      <param name="ENVIRONMENT" value="ci" />
+      <param name="env.ARM_CLIENT_ID" value="c9b52075-31a1-44e9-9509-efeb09dd8a57" />
+      <param name="env.ARM_CLIENT_SECRET" value="zxxc245b01f644c557fb3de927d06af2c7449db31ef8b4af8d334a154400b9f1398ef652e58d40b800183df94fbd5fdcf14" />
+      <param name="env.ARM_SUBSCRIPTION_ID" value="904ad912-63ba-41fd-bb70-c7d23b5c8674" />
+      <param name="env.ARM_TENANT_ID" value="0f875460-d445-4ded-8b56-8468a26be9ec" />
+      <param name="env.TF_VAR_admin_password" value="zxxced47106dc4e878442a4169e90d24f7f" />
+      <param name="env.TF_VAR_admin_username" value="ciadministrator" />
+      <param name="env.TF_VAR_directory_password" value="zxxced47106dc4e878442a4169e90d24f7f" />
+      <param name="env.TF_VAR_directory_username" value="ciadministrator" />
+    </parameters>
+    <build-runners order="RUNNER_536" />
+    <vcs-settings />
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

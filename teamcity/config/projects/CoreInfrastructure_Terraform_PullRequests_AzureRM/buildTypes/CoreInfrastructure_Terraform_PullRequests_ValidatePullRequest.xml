@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="43f8c4d8-116d-4c76-a8cd-d5916f5c58e0" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Validate Pull Request</name>
+  <description />
+  <settings ref="CoreInfrastructure_Terraform_PullRequests_TerraformPrValidate">
+    <parameters>
+      <param name="TERRAFORM_MODULES_PATH" value="src/azurerm/infrastructure/" />
+    </parameters>
+    <build-runners order="RUNNER_353, RUNNER_404" />
+    <vcs-settings />
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

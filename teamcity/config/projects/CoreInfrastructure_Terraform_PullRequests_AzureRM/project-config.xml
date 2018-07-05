@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="CoreInfrastructure_Terraform_PullRequests" uuid="347f2c92-80ac-4eea-aa9e-f6dd5829b677" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>AzureRM</name>
+  <parameters />
+  <cleanup />
+</project>
+

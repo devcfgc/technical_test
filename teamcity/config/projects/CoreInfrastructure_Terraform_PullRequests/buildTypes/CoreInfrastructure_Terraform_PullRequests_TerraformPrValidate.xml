@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="d678c0ff-0373-4f88-8b4d-529488043150" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Terraform PR Validate</name>
+  <settings>
+    <options>
+      <option name="cleanBuild" value="true" />
+      <option name="shouldFailBuildOnAnyErrorMessage" value="true" />
+    </options>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_353" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="terraform get" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_404" name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="terraform validate" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="CoreInfrastructure_Terraform_Terraform" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="branchFilter" value="+:refs/pull/*/merge" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+          <param name="enableQueueOptimization" value="true" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <build-extensions>
+      <extension id="BUILD_EXT_34" type="commit-status-publisher">
+        <parameters>
+          <param name="github_authentication_type" value="token" />
+          <param name="github_host" value="https://api.github.com" />
+          <param name="publisherId" value="githubStatusPublisher" />
+          <param name="secure:github_access_token" value="zxx0e613bea305d7cc823d4680b893ea398af2d0a8e7e1d7116919b462ddd1e8118680716b175863c16775d03cbe80d301b" />
+          <param name="vcsRootId" value="CoreInfrastructure_Terraform_Terraform" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <cleanup />
+  </settings>
+</template>
+

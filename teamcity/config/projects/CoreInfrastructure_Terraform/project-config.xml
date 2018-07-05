@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="CoreInfrastructure" uuid="6ffc42d9-972b-4983-a41c-9efe07b1913b" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Terraform</name>
+  <parameters>
+    <param name="GITHUB_TOKEN" value="zxx0e613bea305d7cc823d4680b893ea398af2d0a8e7e1d7116919b462ddd1e8118680716b175863c16775d03cbe80d301b" spec="password readOnly='true' display='hidden'" />
+    <param name="NODE_VERSION" value="6.9.2" />
+    <param name="env.ARM_ACCESS_KEY" value="zxx60ae2250e8022c5ac2d0ec0a523b926da3792a639ea5b8312ad2625a7575baeca70981b6be936035fa9e94a163b2f32de49670c9fda50dc24d73604c959d567b54d8ac590a1459daf3071ad8647580ed27b8318b4520c966775d03cbe80d301b" spec="password display='hidden' readOnly='true'" />
+    <param name="env.PATH" value="/var/ve/terraform-%TERRAFORM_VERSION%/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/rvm/bin:/usr/local/bin/" />
+  </parameters>
+  <cleanup />
+</project>
+

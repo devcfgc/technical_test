@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="a022583f-6c2f-4ab7-83ef-4e93ed4b7f05" paused="true" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>3) Provision Production USA Infrastructure</name>
+  <description />
+  <settings ref="CoreInfrastructure_Terraform_Deployments_AzureRMDeployment">
+    <parameters>
+      <param name="COMPANY" value="ve" />
+      <param name="ENVIRONMENT" value="prod-u2" />
+      <param name="env.ARM_CLIENT_ID" value="3d5c6d07-9c76-408c-820e-2ed669ed2b3b" />
+      <param name="env.ARM_CLIENT_SECRET" value="zxxf96673fb141e4d04109466d9a5057e32137fb9125fefad377eedfa0a3d2c6f14858a7a44bbe93cec8f195d34ca7a36a7" />
+      <param name="env.ARM_SUBSCRIPTION_ID" value="22f1bdf4-3e6d-4fa4-8c0a-fa5940198e33" />
+      <param name="env.ARM_TENANT_ID" value="0f875460-d445-4ded-8b56-8468a26be9ec" />
+      <param name="env.TF_VAR_admin_password" value="zxx9a836c519d3f62e4716ebabae392284a" />
+      <param name="env.TF_VAR_admin_username" value="localadmin" />
+      <param name="env.TF_VAR_directory_password" value="zxx9a836c519d3f62e4716ebabae392284a" />
+      <param name="env.TF_VAR_directory_username" value="localadmin" />
+    </parameters>
+    <build-runners order="RUNNER_486" />
+    <vcs-settings />
+    <requirements />
+    <build-triggers>
+      <build-trigger id="TRIGGER_32" type="buildDependencyTrigger">
+        <parameters>
+          <param name="afterSuccessfulBuildOnly" value="true" />
+          <param name="dependsOn" value="CoreInfrastructure_Terraform_Deployments_AzureRM_2ProvisionPreProdInfrastructure" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <cleanup />
+  </settings>
+</build-type>
+

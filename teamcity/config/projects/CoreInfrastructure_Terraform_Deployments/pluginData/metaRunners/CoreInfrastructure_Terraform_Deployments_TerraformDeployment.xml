@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="Terraform Deployment">
+  <description>Deploys Terraform Modules</description>
+  <settings>
+    <parameters>
+      <param name="COMPANY" value="" />
+      <param name="COMMIT_SHA" value="" />
+      <param name="ENVIRONMENT" value="" />
+      <param name="ENVIRONMENT_FILE" value="" />
+      <param name="GITHUB_TOKEN" value="" />
+      <param name="NODE_VERSION" value="" />
+      <param name="TERRAFORM_MODULES_PATH" value="" />
+    </parameters>
+    <build-runners>
+      <runner name="Install Node" type="jonnyzzz.nvm">
+        <parameters>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="version" value="%NODE_VERSION%" />
+        </parameters>
+      </runner>
+      <runner name="Install Node.JS packages" type="jonnyzzz.npm">
+        <parameters>
+          <param name="npm_commands" value="install" />
+          <param name="teamcity.build.workingDir" value="build/" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner name="Fetch Modules" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="terraform get" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner name="Configure Remote State" type="simpleRunner">
+        <parameters>
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="script.content" value="terraform remote config -backend=azure -backend-config=&quot;resource_group_name=terraform-state&quot; -backend-config=&quot;storage_account_name=terraformstate&quot; -backend-config=&quot;container_name=terraform-%COMPANY%&quot; -backend-config=&quot;key=%COMPANY%-%ENVIRONMENT%-terraform.tfstate&quot;" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner name="Post Plan to Slack" type="jonnyzzz.node">
+        <parameters>
+          <param name="node_execution_mode" value="file" />
+          <param name="node_file" value="%teamcity.build.checkoutDir%/.teamcity/plan-slack.js" />
+          <param name="node_script_args" value="%GITHUB_TOKEN% %COMMIT_SHA% %ENVIRONMENT_FILE% %ENVIRONMENT%" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner name="Apply" type="simpleRunner">
+        <parameters>
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="script.content" value="terraform apply -refresh=true -no-color -input=false -state=terraform.tfstate --var-file=%ENVIRONMENT_FILE%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner name="Push Remote State" type="simpleRunner">
+        <parameters>
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="script.content" value="terraform remote push" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
+

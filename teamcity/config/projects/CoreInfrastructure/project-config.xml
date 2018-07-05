@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="cc286fd1-5f9a-4a6f-bf97-2de43ffd3a63" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Core Infrastructure</name>
+  <parameters>
+    <param name="PACKER_VERSION" value="0.12.1" />
+    <param name="TERRAFORM_VERSION" value="0.8.5" />
+  </parameters>
+  <cleanup />
+</project>
+

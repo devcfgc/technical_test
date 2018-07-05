@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="CoreInfrastructure_Terraform" uuid="b4624ef0-44c1-4df8-a706-f10514221715" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>Deployments</name>
+  <parameters />
+  <project-extensions>
+    <extension id="PROJECT_EXT_1" type="JetBrains.SharedResources">
+      <parameters>
+        <param name="name" value="TerraformEnvironmentLock" />
+        <param name="quota" value="1" />
+        <param name="type" value="quoted" />
+      </parameters>
+    </extension>
+  </project-extensions>
+  <cleanup />
+</project>
+

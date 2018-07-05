@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="AzureRM Pull Request">
+  <description>Calculates the plan for a given pull request in AzureRM</description>
+  <settings>
+    <parameters>
+      <param name="COMMIT_SHA" value="" />
+      <param name="COMPANY" value="" />
+      <param name="CONFIGURATION_FILE" value="" />
+      <param name="ENVIRONMENT" value="" />
+      <param name="GITHUB_TOKEN" value="" />
+      <param name="NODE_VERSION" value="" />
+      <param name="TERRAFORM_MODULES_PATH" value="" />
+    </parameters>
+    <build-runners>
+      <runner name="Planner: Install Node" type="jonnyzzz.nvm">
+        <parameters>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="version" value="%NODE_VERSION%" />
+        </parameters>
+      </runner>
+      <runner name="Planner: Install the Dependencies" type="jonnyzzz.npm">
+        <parameters>
+          <param name="npm_commands" value="install" />
+          <param name="teamcity.build.workingDir" value="build/" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner name="Fetch Terraform Modules" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="terraform get" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner name="Configure the Remote State" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="terraform remote config -backend=azure -backend-config=&quot;resource_group_name=terraform-state&quot; -backend-config=&quot;storage_account_name=terraformstate&quot; -backend-config=&quot;container_name=terraform-%COMPANY%&quot; -backend-config=&quot;key=%COMPANY%-%ENVIRONMENT%-terraform.tfstate&quot;" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner name="Post Plan to Github" type="jonnyzzz.node">
+        <parameters>
+          <param name="node_execution_mode" value="file" />
+          <param name="node_file" value="%teamcity.build.checkoutDir%/.teamcity/plan-github.js" />
+          <param name="node_script_args" value="%GITHUB_TOKEN% %COMMIT_SHA% %CONFIGURATION_FILE% %ENVIRONMENT%" />
+          <param name="teamcity.build.workingDir" value="%TERRAFORM_MODULES_PATH%" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
+

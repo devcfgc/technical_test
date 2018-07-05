@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="Disable Sensu (Linux)">
+  <description>Silences the sensu checks (linux agent version)</description>
+  <settings>
+    <parameters>
+      <param name="FQDN" value="" />
+      <param name="SENSU_ENV" value="sensu.service.veinternal.com" />
+    </parameters>
+    <build-runners>
+      <runner name="Disable Sensu" type="simpleRunner">
+        <parameters>
+          <param name="command.executable" value="/usr/bin/sensu" />
+          <param name="command.parameters" value="silence %SENSU_ENV% %FQDN%" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
+
