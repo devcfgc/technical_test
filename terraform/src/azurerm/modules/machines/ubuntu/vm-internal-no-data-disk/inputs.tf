@@ -56,7 +56,7 @@ variable "backend_address_pool_ids" {
 
 # Extensions
 variable "domain_name" {
-  description = "The Domain Name to associated with the machine - e.g. `ve-ci.com` / `ve-pp.com` / `veproduction.dom`"
+  description = "The Domain Name to associated with the machine - e.g. `ci.com` / `pp.com` / `production.dom`"
 }
 
 variable "puppet_host" {
